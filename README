@@ -1,0 +1,11 @@
+####Battery Health Checker
+####Marcelo Elizeche Lando
+Muestra el porcentaje de Bateria "muerta" de una notebook
+
+####Instalacion
+Ejecutar install.sh
+
+Requerimientos
+
+*Python 2.6
+*PyQt4
