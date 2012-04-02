@@ -1,11 +1,12 @@
-####Battery Health Checker Para Linux
+####Battery Health Checker for Linux
 ####Marcelo Elizeche Lando
-Muestra el porcentaje de Bateria "muerta" de una notebook
 
-####Instalacion
-Ejecutar install.sh
+Shows the "dead" battery percentage of a laptop
 
-Requerimientos
+####Instalattion
+./install.sh
+
+Requirements
 
 *Python 2.6
 *PyQt4
