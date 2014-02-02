@@ -5,6 +5,9 @@
 import sys,string
 from PyQt4 import QtCore, QtGui, QtNetwork
 from ui import Ui_Dialog
+import os.path
+
+
 
 global info
 
@@ -19,11 +22,29 @@ class StartGUI(QtGui.QDialog):
 		
 	def leerInfo(self):
 		global info
-		f= open("/proc/acpi/battery/BAT0/info") #obtenemos la informacion de /proc
+		fname = "/proc/acpi/battery/BAT0/info"
+		if not os.path.isfile(fname):
+
+			f= open("/sys/class/power_supply/BAT0/energy_full")
+			maxfull = f.readlines()[0]
+			f= open("/sys/class/power_supply/BAT0/energy_full_design")
+			maxcap = f.readlines()[0]
+			f= open("/sys/class/power_supply/BAT0/present")
+			present = f.readlines()[0]
+			if present == '1\n':
+				present = True
+			else:
+				present = False
+			f.close()
+			info = (present,maxcap,maxfull)
+			return 1
+
+		f = open("/proc/acpi/battery/BAT0/info") #obtenemos la informacion de /proc
 		text=f.readlines()
 	#	print text
 		present = text[0].split(':')[1].strip() #Checkeamos si hay bateria o no 
 		if(present=='no'):
+			present = False
 			info = (present,'','')
 			return 0
 		else:
@@ -41,7 +62,7 @@ class StartGUI(QtGui.QDialog):
 	def displayInfo(self):
 		global info
 		#print info
-		if(info[0]=='yes'): #cargamos la informacion en los widgets
+		if(info[0]): #cargamos la informacion en los widgets
 			self.ui.lineEdit.setText(info[1] + ' mWh')  
 			self.ui.lineEdit_2.setText(info[2] + ' mWh') 
 			batHealth = (int(info[2])*100)/int(info[1]) # "Calculo" del porcentaje de 'Salud' de la bateria
