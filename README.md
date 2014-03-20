@@ -11,5 +11,5 @@ batteryhealth
 
 ### Requirements
 
-*Python 2.6
-*PyQt4
+* Python 2.6
+* PyQt4
