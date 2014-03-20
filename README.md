@@ -1,4 +1,4 @@
-## Battery Health Checker for Linux
+# Battery Health Checker for Linux
 ## Marcelo Elizeche Lando
 
 Shows the "dead" battery percentage of a laptop
@@ -9,7 +9,7 @@ Shows the "dead" battery percentage of a laptop
 ### Run
 batteryhealth
 
-Requirements
+### Requirements
 
 *Python 2.6
 *PyQt4
