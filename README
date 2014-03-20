@@ -1,10 +1,13 @@
-####Battery Health Checker for Linux
-####Marcelo Elizeche Lando
+## Battery Health Checker for Linux
+## Marcelo Elizeche Lando
 
 Shows the "dead" battery percentage of a laptop
 
-####Instalattion
-./install.sh
+### Install
+./install.sh (as root)
+
+### Run
+batteryhealth
 
 Requirements
 
