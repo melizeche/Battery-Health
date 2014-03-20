@@ -61,13 +61,16 @@ class StartGUI(QtGui.QDialog):
 		
 	def displayInfo(self):
 		global info
-		#print info
+		capacity = float(info[1])/1000000
+		full = float(info[2])/1000000
 		if(info[0]): #cargamos la informacion en los widgets
-			self.ui.lineEdit.setText(info[1] + ' mWh')  
-			self.ui.lineEdit_2.setText(info[2] + ' mWh') 
-			batHealth = (int(info[2])*100)/int(info[1]) # "Calculo" del porcentaje de 'Salud' de la bateria
+			self.ui.lineEdit.setText(str(capacity) + ' Wh')  
+			self.ui.lineEdit_2.setText(str(full) + ' Wh') 
+			batHealth = (full*100)/capacity # "Calculo" del porcentaje de 'Salud' de la bateria
+			#print "%.2f" %  batHealth 
 			self.ui.progressBar.setProperty("value", batHealth)
-			self.ui.label_3.setText(str(self.ui.label_3.text()) + str(100-batHealth) + ' %')
+			#self.ui.label_3.setText(str(self.ui.label_3.text()) + str(100-batHealth) + ' %')
+			self.ui.label_3.setText("Capacidad perdida: "  + "%.2f" % (100-batHealth) + ' %')
 			#self.ui.lineEdit_3.setText(str(batHealth) + ' %')
 		else:
 			self.ui.lineEdit.setText("NO BAT")
